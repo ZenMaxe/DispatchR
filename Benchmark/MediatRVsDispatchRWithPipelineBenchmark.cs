@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 using MediatR;
@@ -11,6 +12,7 @@ namespace Benchmark;
 
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
+[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
 public class MediatRVsDispatchWithPipelineRBenchmark
 {
     private MediatR.IMediator _mediator;
